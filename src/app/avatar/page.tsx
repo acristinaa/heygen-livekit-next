@@ -16,7 +16,7 @@ export default function AvatarPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleStart = async () => {
-    await start("Wayne_20240711");
+    await start("Wayne_20240711", "GERMAN_VOICE_ID_HERE");
     setIsSessionActive(true);
   };
 
@@ -54,7 +54,7 @@ export default function AvatarPage() {
             AI Avatar Studio
           </h1>
           <p className="text-slate-600 text-lg">
-            Interact with your AI avatar in real-time
+            Interagiere mit deinem KI-Avatar in Echtzeit
           </p>
         </div>
 
@@ -70,7 +70,7 @@ export default function AvatarPage() {
                   className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 text-lg font-medium"
                   size="lg">
                   <Play className="w-5 h-5 mr-2" />
-                  Start Session
+                  Starten
                 </Button>
                 <Button
                   onClick={handleStop}
@@ -79,14 +79,14 @@ export default function AvatarPage() {
                   className="px-6 py-3 text-lg font-medium"
                   size="lg">
                   <Square className="w-5 h-5 mr-2" />
-                  End Session
+                  Beenden
                 </Button>
               </div>
               {isSessionActive && (
                 <div className="mt-4 text-center">
                   <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-emerald-100 text-emerald-800">
                     <div className="w-2 h-2 bg-emerald-500 rounded-full mr-2 animate-pulse"></div>
-                    Session Active
+                    Session aktiv
                   </div>
                 </div>
               )}
@@ -112,9 +112,7 @@ export default function AvatarPage() {
                   <div className="absolute inset-0 flex items-center justify-center bg-slate-900/50">
                     <div className="text-center text-white">
                       <Play className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                      <p className="text-lg font-medium">
-                        Start a session to begin
-                      </p>
+                      <p className="text-lg font-medium">Starte eine Session</p>
                     </div>
                   </div>
                 )}
@@ -131,7 +129,7 @@ export default function AvatarPage() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Type what you want the avatar to say..."
+                    placeholder="Was möchtest du den Avatar fragen?"
                     className="flex-1 text-lg py-3 px-4 border-2 border-slate-200 focus:border-blue-500 rounded-lg"
                     disabled={!isSessionActive}
                   />
@@ -143,7 +141,7 @@ export default function AvatarPage() {
                     className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium"
                     size="lg">
                     <MessageCircle className="w-5 h-5 mr-2" />
-                    Talk
+                    Frage stellen
                   </Button>
                   <Button
                     onClick={handleRepeat}
@@ -151,7 +149,7 @@ export default function AvatarPage() {
                     className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 font-medium"
                     size="lg">
                     <Repeat className="w-5 h-5 mr-2" />
-                    Repeat
+                    Wiederholen
                   </Button>
                 </div>
               </div>
