@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Play, Square, MessageCircle, Repeat } from "lucide-react";
+import { askLLM } from "@/lib/ask-llm";
 
 export default function AvatarPage() {
   const { start, say, stop, setVideoEl } = useHeygenRoom();
@@ -25,12 +26,13 @@ export default function AvatarPage() {
     setIsSessionActive(false);
   };
 
-  const handleTalk = () => {
-    if (input.trim()) {
-      say(input, "talk");
-      setInput("");
-    }
+  const handleAsk = async () => {
+    if (!input.trim()) return;
+    const reply = await askLLM(input);
+    say(reply, "talk");          // avatar speaks the LLM’s answer
+    setInput("");                // clear input
   };
+  
 
   const handleRepeat = () => {
     if (input.trim()) {
@@ -41,7 +43,7 @@ export default function AvatarPage() {
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      handleTalk();
+      handleAsk();
     }
   };
 
@@ -136,7 +138,7 @@ export default function AvatarPage() {
                 </div>
                 <div className="flex justify-center gap-3">
                   <Button
-                    onClick={handleTalk}
+                    onClick={handleAsk}
                     disabled={!isSessionActive || !input.trim()}
                     className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-medium"
                     size="lg">
