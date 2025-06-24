@@ -17,7 +17,7 @@ export default function AvatarPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const handleStart = async () => {
-    await start("Wayne_20240711", "GERMAN_VOICE_ID_HERE");
+    await start("Katya_Chair_Sitting_public", "GERMAN_VOICE_ID_HERE");
     setIsSessionActive(true);
   };
 
@@ -29,8 +29,8 @@ export default function AvatarPage() {
   const handleAsk = async () => {
     if (!input.trim()) return;
     const reply = await askLLM(input);
-    say(reply, "talk");          // avatar speaks the LLM’s answer
-    setInput("");                // clear input
+    say(reply, "talk");
+    setInput("");
   };
   
 
@@ -107,7 +107,7 @@ export default function AvatarPage() {
                   autoPlay
                   playsInline
                   muted
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
 
                 {!isSessionActive && (
